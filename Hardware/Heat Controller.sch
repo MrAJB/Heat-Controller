@@ -117,9 +117,9 @@ Wire Wire Line
 Wire Wire Line
 	2500 3650 2500 3400
 Text Notes 600  2700 0    50   ~ 0
-Input (from grid):\n3 - L\n2 - N\n1 - GND
+Input (from grid):\n3 - L\n2 - N\n1 - Earth
 Text Notes 600  3650 0    50   ~ 0
-Output (to heater):\n3 - L (switched)\n2 - N\n1 - GND
+Output (to heater):\n3 - L (switched)\n2 - N\n1 - Earth
 Wire Wire Line
 	8800 850  9000 850 
 Wire Wire Line
@@ -221,8 +221,6 @@ Wire Wire Line
 Wire Wire Line
 	2400 2550 2400 3500
 Connection ~ 2400 2550
-Text Label 5400 3650 0    50   ~ 0
-RelayControl
 Wire Wire Line
 	4450 4150 4450 4350
 $Comp
@@ -268,10 +266,6 @@ Wire Wire Line
 	8300 3800 8300 4300
 Wire Wire Line
 	8300 4300 9200 4300
-Wire Wire Line
-	5400 3650 5400 3850
-Wire Wire Line
-	5400 4050 5400 4300
 Wire Wire Line
 	8000 1550 8500 1550
 Wire Wire Line
@@ -344,23 +338,8 @@ Temp
 NoConn ~ 3250 3650
 Text Label 10050 3450 0    50   ~ 0
 ButtonPin
-$Comp
-L Connector:Conn_01x03_Male J3
-U 1 1 5F739462
-P 5800 3950
-F 0 "J3" H 5772 3882 50  0000 R CNN
-F 1 "Conn_01x03_Male" H 5772 3973 50  0000 R CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 5800 3950 50  0001 C CNN
-F 3 "~" H 5800 3950 50  0001 C CNN
-	1    5800 3950
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	5400 3850 5600 3850
 Wire Wire Line
 	5250 3950 5600 3950
-Wire Wire Line
-	5400 4050 5600 4050
 $Comp
 L power:GND #PWR07
 U 1 1 5F743808
@@ -570,19 +549,6 @@ F 3 "" H 5700 5250 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	5700 5400 5700 5350
-$Comp
-L power:+5V #PWR05
-U 1 1 5F7C8495
-P 5300 4300
-F 0 "#PWR05" H 5300 4150 50  0001 C CNN
-F 1 "+5V" H 5315 4473 50  0000 C CNN
-F 2 "" H 5300 4300 50  0001 C CNN
-F 3 "" H 5300 4300 50  0001 C CNN
-	1    5300 4300
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	5300 4300 5400 4300
 Wire Notes Line
 	3350 1900 3350 4100
 Wire Wire Line
@@ -700,7 +666,7 @@ $EndComp
 Text Notes 650  4800 0    50   ~ 0
 Power input and control section.\nVAC comes in through screw terminal and feeds the ACDC converter.\nSecondly, the L is switched through a relay.\nTwo grounded mounting holes are added, as they are located close to the terminals.
 Text Notes 4700 4900 0    50   ~ 0
-Header allows to pick between:\n-always off (no header attached)\n-always on (header to comm and +5V)\n-controlled (header to comm and relaycontrol)
+Jumper allows to pick between:\n-always off (no header attached)\n-always on (header to comm and +5V)\n-controlled (header to comm and relaycontrol)
 Wire Wire Line
 	4450 3750 4450 3650
 Connection ~ 4450 3650
@@ -762,4 +728,32 @@ Wire Wire Line
 Connection ~ 5700 5350
 Wire Wire Line
 	5700 5350 5700 5250
+$Comp
+L Jumper:Jumper_3_Open JP1
+U 1 1 5F83BB74
+P 5750 3950
+F 0 "JP1" V 5704 4037 50  0000 L CNN
+F 1 "Jumper_3_Open" V 5795 4037 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 5750 3950 50  0001 C CNN
+F 3 "~" H 5750 3950 50  0001 C CNN
+	1    5750 3950
+	0    1    1    0   
+$EndComp
+Text Label 5750 3600 0    50   ~ 0
+RelayControl
+$Comp
+L power:+5V #PWR05
+U 1 1 5F7C8495
+P 5750 4300
+F 0 "#PWR05" H 5750 4150 50  0001 C CNN
+F 1 "+5V" H 5765 4473 50  0000 C CNN
+F 2 "" H 5750 4300 50  0001 C CNN
+F 3 "" H 5750 4300 50  0001 C CNN
+	1    5750 4300
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	5750 3700 5750 3600
+Wire Wire Line
+	5750 4300 5750 4200
 $EndSCHEMATC
