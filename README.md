@@ -1,2 +1,2 @@
-# Readme
-Template for a KiCad project containing hardware and firmware development.
+# Heat Controller Project
+Repo for the heat controller I am developing in my spare time. The goal is to develop some simple firmware and hardware to control a heating element. 
