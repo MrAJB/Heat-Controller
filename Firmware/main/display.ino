@@ -1,6 +1,5 @@
 // Helper functions to control the display
 
-
 // Initialise the display before use
 void init_display() {
 

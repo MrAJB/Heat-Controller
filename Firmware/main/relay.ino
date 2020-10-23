@@ -1,7 +1,5 @@
 // Helper functions to control the relay
 
-
-
 // Toggle the relay state
 void toggle_relay(){
 
