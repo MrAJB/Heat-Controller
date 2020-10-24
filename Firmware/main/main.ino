@@ -57,14 +57,18 @@ void run_state_machine(){
   long now = millis();
   switch (state) {
     case 0:
+<<<<<<< Updated upstream
       // No error, running normal code in the background
       state0(now);
       
+=======
+      // No error, running normal code, display is off
+      state0(now);
+>>>>>>> Stashed changes
       break;
   
     case 1:
-      // No error, running normal code, display is turned on
-  
+      // No error, running normal code, display is on
       break;
     
     case 2:
@@ -93,7 +97,14 @@ void state0(long now){
   if ((now - last_temp) > TEMP_INTERVAL){
     
     last_temp = now;
+<<<<<<< Updated upstream
     get_temp();
+=======
+    display_msg(F("TestMessage"), true);
+    delay(1000);
+    oled.off();
+    //get_temp();
+>>>>>>> Stashed changes
     //If needed, toggle heater
   }
   
