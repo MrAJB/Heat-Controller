@@ -11,12 +11,9 @@ void init_display() {
   oled.on();
   // Switch the half of RAM that we are writing to, to be the half that is non currently displayed
   oled.switchRenderFrame();
+  oled.off();
 }
 
-// Show the bootscreen on the display
-void show_bootscreen(){
-  //To be implemented
-}
 
 // Show a message on the screen, set big_font to true to use the buffer font. Else, the small font is used.
 void display_msg(String msg, int big_font) {
@@ -45,23 +42,4 @@ void display_msg(String msg, int big_font) {
   // Swap which half of RAM is being written to, and which half is being displayed
   oled.on();
   oled.switchFrame();
-
-  //  // The characters in the 6x8 font are 6 pixels wide and 8 pixels tall
-//  // 4 lines of 21 characters only fills 126x32
-//  oled.setFont(FONT6X8);
-//
-//  // Position the cusror
-//  // Two rows down because the 8x16 font used for the last text takes two rows of 8 pixels
-//  oled.setCursor(1, 2);
-//
-//  // Write the text to oled RAM (which is not currently being displayed)
-//  oled.print(F("ATTiny85 - OLED (I2C)"));
-//
-//  // Position the cusror
-//  // Cursor X is in pixels, and does not need to be a multiple of the font width
-//  oled.setCursor(44, 3);
-//
-//  // Write the text to oled RAM (which is not currently being displayed)
-//  oled.print(F("Project"));
-
 }
