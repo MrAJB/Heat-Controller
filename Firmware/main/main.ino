@@ -27,9 +27,6 @@ void setup(){
   // Blink control LED to show start of the initialisation
   control_LED_blink(1000);
 
-  // Attach interrupts
-  // TODO - To be implemented
-  
   // Initialise the temperature sensor and raise error if temp sensor not found
   if(init_temp()==1){
     sensor_error();
@@ -37,8 +34,6 @@ void setup(){
 
   // Initialise the display
   init_display();
-  display_msg("T",1);
-  delay(10000);
   //show_bootscreen(), if possible with memory constraints
 
   // Blink control LED twice to show finish of the initialisation
@@ -48,14 +43,14 @@ void setup(){
 
 void loop(){
   // Get new temperature values from the sensor
-//  if(get_temp()==1){
-//    sensor_error();
-//  }
+  if(get_temp()==1){
+    sensor_error();
+  }
 
   // Assess if the stored values make sense
-//  if(check_temp()==1){
-//    temp_error();
-//  }
+  if(check_temp()==1){
+    temp_error();
+  }
 
   // Turn the heater on or off if needed
   // TODO - To be implemented
@@ -63,8 +58,7 @@ void loop(){
   // Pulse the control LED
   // TODO - To be implemented
 
-  // TODO - Random temporary delay, needs to be removed when LED-pulse function is in place
-//  delay(5000);
-
-  control_LED_blink(500);
+  // TODO - Functions for debugging purposes
+  delay(2000);
+  // control_LED_blink(500);
 }
