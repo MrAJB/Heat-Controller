@@ -4,8 +4,9 @@
 void sensor_error(){
     while(true){
         //TODO - Turn heater off
-        //TODO - Blink LED at a certain rate, to be implemented
-        delay(2000);
+        control_LED_blink(250);
+
+        //TODO - Every now and then, check if the error is resolved and break the loop
     }
 }
 
@@ -13,7 +14,8 @@ void sensor_error(){
 void temp_error(){
     while(true){
         //TODO - Turn heater off
-        //TODO - Blink LED at a certain rate, to be implemented
-        delay(500);
+        control_LED_blink(250);
+
+        //TODO - Every now and then, check if the error is resolved and break the loop
     }
 }

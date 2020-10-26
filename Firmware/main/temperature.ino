@@ -23,7 +23,7 @@ short get_temp(){
     //TODO - Check for max and min vals
 
     // Briefly blink the control LED to show that data was successfully collected
-    // TODO - Impement code
+    control_LED_blink(500);
 
     return 0;
   }
