@@ -39,13 +39,13 @@ void setup(){
 
 void loop(){
   // Get new temperature values from the sensor
-  if(get_temp())==1){
+  if(get_temp()==1){
     sensor_error();
   }
 
   // Assess if the stored values make sense
   if(check_temp()==1){
-    temp_error()
+    temp_error();
   }
 
   // Turn the heater on or off if needed

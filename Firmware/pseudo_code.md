@@ -33,14 +33,21 @@ TBD: how to detect a long VS short press?
 
 ### LED
 #### control_LED_on()
-- Turn control LED on
+- Turn control LED on (full power)
+
+#### control_LED_on(short pwm)
+- Turn control LED on (input power)
 
 #### control_LED_off()
 - Turn control LED off
 
-#### control_LED_blink(short dur_on, short_dur_off=999)
+#### control_LED_blink(short dur)
 - Blink the LED for the specified duration
-- By default, on and off take the same time, but this can be changed
+- On and off time are the same
+
+#### control_LED_blink(short dur_on, short dur_off)
+- Blink the LED for the specified duration
+- On time and off time are not the same
 
 ### Temparature Sensors
 #### update_temp()
