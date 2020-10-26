@@ -24,6 +24,9 @@ void setup(){
   pinMode(CONTROL_PIN, OUTPUT);
   pinMode(RELAY_PIN, OUTPUT);
 
+  // Blink control LED to show start of the initialisation
+  control_LED_blink(1000);
+
   // Attach interrupts
   // TODO - To be implemented
   
@@ -35,6 +38,10 @@ void setup(){
   // Initialise the display
   init_display();
   //show_bootscreen(), if possible with memory constraints
+
+  // Blink control LED twice to show finish of the initialisation
+  control_LED_blink(500);
+  control_LED_blink(500);
 }
 
 void loop(){
