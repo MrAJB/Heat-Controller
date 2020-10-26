@@ -3,9 +3,9 @@ This document is used to brainstorm on the functionality of the firmware.
 
 
 ## Pre-setup
-- Include the required libraries
 - Define variables
 - Define pins
+- Include the required libraries and define related variables
 
 ## Setup
 - Set pin modes
@@ -33,10 +33,10 @@ TBD: how to detect a long VS short press?
 
 ### LED
 #### control_LED_on()
--Turn control LED on
+- Turn control LED on
 
 #### control_LED_off()
--Turn control LED off
+- Turn control LED off
 
 ### Temparature Sensors
 #### update_temp()

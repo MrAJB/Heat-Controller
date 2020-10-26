@@ -1,5 +1,5 @@
 // Defining global variables
-int current_temp = 999, max_temp = -999, min_temp = 999;
+short current_temp = 999, max_temp = -999, min_temp = 999;
 byte state = 0;
 
 // Defining pins
@@ -17,12 +17,7 @@ byte state = 0;
 OneWire oneWire(TEMP_PIN);
 DallasTemperature sensors(&oneWire);
 
-// Define intervals to run the different functions
-#define LED_INTERVAL 100
-#define TEMP_INTERVAL 5000
-
 void setup(){
-
   // Setting pin modes
   digitalWrite(CONTROL_PIN, LOW);
   digitalWrite(RELAY_PIN, LOW);
