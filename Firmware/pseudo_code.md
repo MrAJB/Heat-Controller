@@ -10,8 +10,8 @@ This document is used to brainstorm on the functionality of the firmware.
 ## Setup
 - Set pin modes
 - Attach button interrupt to interrupt_handler()
-- Init temperature sensors > if not found, get into error mode
 - Init display
+- Init temperature sensors > if not found, get into error mode
 - Maybe some LED blinking or a message on the display to show that init is going on/succesfull? 
 
 ## Loop

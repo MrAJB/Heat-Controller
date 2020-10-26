@@ -24,21 +24,17 @@ void setup(){
   pinMode(CONTROL_PIN, OUTPUT);
   pinMode(RELAY_PIN, OUTPUT);
 
+  // Attach interrupts
+  // to be implemented
+  
+  // Initialise the temperature sensor and raise error if temp sensor not found
+  if(init_temp()==1){
+    sensor_error();
+  }
+
   // Initialise the display
   init_display();
-  //show_bootscreen();
-
-  // Initialise the temperature sensor
-  sensors.begin();
-  if (sensors.getDS18Count() == 0){
-    //blink control LED
-  }
-  else{
-    sensors.setResolution(12);
-  }
-
-  // Clear the display and turn it off
-  //display_off();
+  //show_bootscreen(), if possible with memory constraints
 }
 
 void loop(){
