@@ -1,6 +1,6 @@
 // Helper functions to read the temperature sensor
 
-// Retrieve temperature from the sensor
+// Initialise the temperature sensor, get into error mode when the sensor is not found
 short init_temp(){
   sensors.begin();
   if (sensors.getDS18Count() == 0){
@@ -13,7 +13,26 @@ short init_temp(){
   }
 }
 
-void get_temp(){
-  sensors.requestTemperatures();
-  current_temp = sensors.getTempCByIndex(0);
+// Retrieve temperature from the sensor
+short get_temp(){
+  if (sensors.getDS18Count() == 0){
+    sensors.requestTemperatures();
+    current_temp = sensors.getTempCByIndex(0);
+
+    // If required, update the max and/or min temperature values
+    //TODO - Check for max and min vals
+
+    // Briefly blink the control LED to show that data was successfully collected
+    // TODO - Impement code
+
+    return 0;
+  }
+  else {
+    return 1;
+  }
+}
+
+// Check if the temperatures found by the sensor make sense/are within range
+short check_temp(){
+  //TODO - To be implemented, return 1 in case of an error
 }

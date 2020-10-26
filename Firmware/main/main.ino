@@ -25,7 +25,7 @@ void setup(){
   pinMode(RELAY_PIN, OUTPUT);
 
   // Attach interrupts
-  // to be implemented
+  // TODO - To be implemented
   
   // Initialise the temperature sensor and raise error if temp sensor not found
   if(init_temp()==1){
@@ -38,10 +38,22 @@ void setup(){
 }
 
 void loop(){
-  delay(100);
-}
+  // Get new temperature values from the sensor
+  if(get_temp())==1){
+    sensor_error();
+  }
 
-void check_errors(){
-  // To be implemented
-  // Are all temperatures within range?
+  // Assess if the stored values make sense
+  if(check_temp()==1){
+    temp_error()
+  }
+
+  // Turn the heater on or off if needed
+  // TODO - To be implemented
+
+  // Pulse the control LED
+  // TODO - To be implemented
+
+  // TODO - Random temporary delay, needs to be removed when LED-pulse function is in place
+  delay(5000);
 }
