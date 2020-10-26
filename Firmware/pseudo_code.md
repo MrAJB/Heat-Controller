@@ -9,7 +9,6 @@ This document is used to brainstorm on the functionality of the firmware.
 
 ## Setup
 - Set pin modes
-- Attach button interrupt to interrupt_handler()
 - Init display
 - Init temperature sensors > if not found, get into error mode
 - Maybe some LED blinking or a message on the display to show that init is going on/succesfull? 
@@ -20,17 +19,9 @@ This document is used to brainstorm on the functionality of the firmware.
 - If current temp>2 turn heater off
 - If current, max or min temp is off, get into error state and turn heater off
 - During 30 seconds delay, pulse the control LED
+- Switch pinmode to check if the control pin is pulled low (i.e. the button is pressed) to activate the display
 
 ## Helper functions
-### General
-#### interrupt_handler()
-Funtion called whenever the user presses the button.
-TBD: how to detect a long VS short press?
-
-- Detect button pressed
-- If short button press: show current, max and min val (possibly also runtime)
-- If long button press: reset current, max and min val. Call update_temp() to set new temp values
-
 ### LED
 #### control_LED_on()
 - Turn control LED on (full power)

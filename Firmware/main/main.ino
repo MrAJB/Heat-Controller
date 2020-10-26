@@ -3,7 +3,7 @@ short current_temp = 999, max_temp = -999, min_temp = 999;
 byte state = 0;
 
 // Defining pins
-#define CONTROL_PIN 0
+#define CONTROL_PIN 4
 #define RELAY_PIN 1
 #define TEMP_PIN 3
 
@@ -37,6 +37,8 @@ void setup(){
 
   // Initialise the display
   init_display();
+  display_msg("T",1);
+  delay(10000);
   //show_bootscreen(), if possible with memory constraints
 
   // Blink control LED twice to show finish of the initialisation
@@ -46,14 +48,14 @@ void setup(){
 
 void loop(){
   // Get new temperature values from the sensor
-  if(get_temp()==1){
-    sensor_error();
-  }
+//  if(get_temp()==1){
+//    sensor_error();
+//  }
 
   // Assess if the stored values make sense
-  if(check_temp()==1){
-    temp_error();
-  }
+//  if(check_temp()==1){
+//    temp_error();
+//  }
 
   // Turn the heater on or off if needed
   // TODO - To be implemented
@@ -62,5 +64,7 @@ void loop(){
   // TODO - To be implemented
 
   // TODO - Random temporary delay, needs to be removed when LED-pulse function is in place
-  delay(5000);
+//  delay(5000);
+
+  control_LED_blink(500);
 }
