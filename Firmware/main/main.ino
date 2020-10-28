@@ -59,32 +59,30 @@ void loop(){
   // TODO - To be implemented
 
   // TODO - Functions for debugging purposes, remove when code is finished
-  control_LED_blink(200);
-  control_LED_blink(200);
-  control_LED_blink(200);
-  handleSwitchPresses();
+  delay(1000);
+  read_switch();
   // control_LED_blink(500);
 }
 
-void handleSwitchPresses()
+void read_switch()
 {
-  //**** R e a d i n g   t h e  s w i t c h   s h a r e d   w i t h   L E D ****
-  //Reading the switch takes ~14us
-  //save the condition of the output pin
+  // Save the condition of the output pin
   byte PinState = digitalRead(CONTROL_PIN);
-  //read the switch connected to this pin
+
+  // Invert pinMode, read status and revert back to normal mode
   pinMode(CONTROL_PIN, INPUT_PULLUP);
   byte switchPosition = digitalRead(CONTROL_PIN);
-  delay(5000);
-  //return the pin to OUTPUT
   pinMode(CONTROL_PIN, OUTPUT);
-  //restore the pin state
+  
+  // Restore the pin state
   digitalWrite(CONTROL_PIN, PinState);
 
-  if (switchPosition == 1)  {
-    sensor_error();
+  // Handle the pin reading
+  if (switchPosition == 0)  {
+    // Button is pressed
+    // TODO - Implement follow up
   }
   else {
-    temp_error();
+    // Button is not pressed;
   }
 }
