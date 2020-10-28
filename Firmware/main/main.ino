@@ -19,7 +19,7 @@ DallasTemperature sensors(&oneWire);
 
 void setup(){
   // Setting pin modes
-  digitalWrite(CONTROL_PIN, LOW);
+  digitalWrite(CONTROL_PIN, HIGH);
   digitalWrite(RELAY_PIN, LOW);
   pinMode(CONTROL_PIN, OUTPUT);
   pinMode(RELAY_PIN, OUTPUT);
@@ -59,6 +59,32 @@ void loop(){
   // TODO - To be implemented
 
   // TODO - Functions for debugging purposes, remove when code is finished
-  delay(2000);
+  control_LED_blink(200);
+  control_LED_blink(200);
+  control_LED_blink(200);
+  handleSwitchPresses();
   // control_LED_blink(500);
+}
+
+void handleSwitchPresses()
+{
+  //**** R e a d i n g   t h e  s w i t c h   s h a r e d   w i t h   L E D ****
+  //Reading the switch takes ~14us
+  //save the condition of the output pin
+  byte PinState = digitalRead(CONTROL_PIN);
+  //read the switch connected to this pin
+  pinMode(CONTROL_PIN, INPUT_PULLUP);
+  byte switchPosition = digitalRead(CONTROL_PIN);
+  delay(5000);
+  //return the pin to OUTPUT
+  pinMode(CONTROL_PIN, OUTPUT);
+  //restore the pin state
+  digitalWrite(CONTROL_PIN, PinState);
+
+  if (switchPosition == 1)  {
+    sensor_error();
+  }
+  else {
+    temp_error();
+  }
 }
