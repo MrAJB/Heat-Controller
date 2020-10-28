@@ -6,7 +6,7 @@ void control_LED_on(){
     digitalWrite(CONTROL_PIN, HIGH);
 }
 
-//  Turn control LED on (specified power)
+//  Turn control LED on (specified PWM power)
 void control_LED_on(short pwm){
     analogWrite(CONTROL_PIN, pwm);
 }
@@ -24,7 +24,7 @@ void control_LED_blink(short dur){
     delay(dur);
 }
 
-// Blink the LED for the specified duration
+// Blink the LED for the specified duration, with a different on and off duration
 void control_LED_blink(short dur_on, short dur_off){
     control_LED_on();
     delay(dur_on);

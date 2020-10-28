@@ -3,7 +3,10 @@
 // Error mode to indicate that the temperature sensor is not found
 void sensor_error(){
     while(true){
-        //TODO - Turn heater off
+        //Turn heater off
+        heater_off();
+
+        // Blink the LED to indicate an error
         control_LED_blink(250);
 
         //TODO - Every now and then, check if the error is resolved and break the loop
@@ -13,8 +16,11 @@ void sensor_error(){
 // Error mode to show temperatures are out of range
 void temp_error(){
     while(true){
-        //TODO - Turn heater off
-        control_LED_blink(250);
+        //Turn heater off
+        heater_off();
+
+        // Blink the LED to indicate an error
+        control_LED_blink(1000);
 
         //TODO - Every now and then, check if the error is resolved and break the loop
     }

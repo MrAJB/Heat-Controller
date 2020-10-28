@@ -2,7 +2,6 @@
 
 // Initialise the display before use
 void init_display() {
-
   // Send the initialization sequence to the oled. This leaves the display turned off
   oled.begin();
   // Clear the memory before turning on the display
@@ -17,7 +16,6 @@ void init_display() {
 
 // Show a message on the screen, set big_font to true to use the buffer font. Else, the small font is used.
 void display_msg(char msg[], int big_font) {
-
   // Clear the non-displayed half of the memory to all black
   // (The previous clear only cleared the other half of RAM)
   oled.clear();

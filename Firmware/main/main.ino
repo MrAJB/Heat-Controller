@@ -44,7 +44,7 @@ void setup(){
 void loop(){
   // Get new temperature values from the sensor
   if(get_temp()==1){
-    sensor_error();
+    temp_error();
   }
 
   // Assess if the stored values make sense
