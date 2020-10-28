@@ -25,20 +25,20 @@ void setup(){
   pinMode(RELAY_PIN, OUTPUT);
 
   // Blink control LED to show start of the initialisation
-  control_LED_blink(1000);
+  control_LED_blink(500);
+
+  // Initialise the display
+  init_display();
+  display_msg("Initializing...",1);
 
   // Initialise the temperature sensor and raise error if temp sensor not found
   if(init_temp()==1){
     sensor_error();
   }
 
-  // Initialise the display
-  init_display();
-  //show_bootscreen(), if possible with memory constraints
-
-  // Blink control LED twice to show finish of the initialisation
-  control_LED_blink(500);
-  control_LED_blink(500);
+  // Long blink control LED to show finish of the initialisation and turn the display off
+  control_LED_blink(2000);
+  display_off();
 }
 
 void loop(){
@@ -55,10 +55,10 @@ void loop(){
   // Turn the heater on or off if needed
   // TODO - To be implemented
 
-  // Pulse the control LED
+  // Pulse the control LED in a for loop and check if the button is pressed
   // TODO - To be implemented
 
-  // TODO - Functions for debugging purposes
+  // TODO - Functions for debugging purposes, remove when code is finished
   delay(2000);
   // control_LED_blink(500);
 }

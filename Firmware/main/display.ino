@@ -41,3 +41,8 @@ void display_msg(char msg[], int big_font) {
   oled.on();
   oled.switchFrame();
 }
+
+// Turn display off
+void display_off(){
+  oled.off();
+}
