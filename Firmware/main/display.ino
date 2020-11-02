@@ -1,7 +1,7 @@
 // Helper functions to control the display
 
 // Initialise the display before use
-void init_display() {
+void display_init() {
   // Send the initialization sequence to the oled. This leaves the display turned off
   oled.begin();
   // Clear the memory before turning on the display
@@ -12,7 +12,6 @@ void init_display() {
   oled.switchRenderFrame();
   oled.off();
 }
-
 
 // Show a message on the screen, set big_font to true to use the bigger font. Else, the small font is used.
 void display_msg(char msg[], int big_font) {
@@ -45,4 +44,11 @@ void display_msg(char msg[], int big_font) {
 // Turn display off
 void display_off(){
   oled.off();
+}
+
+void display_update() {
+  // TODO - To be implemented, show current, max and min temps, as well as runtime (if possible)
+  display_msg("BUTTON PRESSED",1);
+  delay(2000);
+  display_off();
 }

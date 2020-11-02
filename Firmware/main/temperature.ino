@@ -7,6 +7,7 @@ short init_temp(){
     // Return error code, sensor not found
     return 1;
   }
+  
   else{
     // Set the sensor resolution
     // TODO - Check the resolution settings
@@ -21,12 +22,19 @@ short get_temp(){
     // Return error code, sensor not found
     return 1;
   }
+
   else {
     sensors.requestTemperatures();
     current_temp = sensors.getTempCByIndex(0);
 
     // If required, update the max and/or min temperature values
-    //TODO - Check for max and min vals
+    if (current_temp > max_temp) {
+      max_temp = current_temp;
+    }
+    
+    if (current_temp < min_temp) {
+      min_temp = current_temp;
+    }
 
     // Briefly blink the control LED to show that data was successfully collected
     control_LED_blink(500);
@@ -38,6 +46,19 @@ short get_temp(){
 
 // Check if the temperatures found by the sensor make sense/are within range
 short check_temp(){
-  //TODO - To be implemented, return 1 in case of an error
+  // Check for outliers in temperature values and return 1 if so
+  if (current_temp > 50 || current_temp < -50){
+    return 1;
+  }
+  
+  if (max_temp > 50 || max_temp < -50){
+    return 1;
+  }
+
+  if (min_temp > 50 || min_temp < -50){
+    return 1;
+  }
+
+  // Values are good
   return 0;
 }

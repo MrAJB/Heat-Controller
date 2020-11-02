@@ -2,10 +2,10 @@
 
 // Turn the heater on
 void heater_on(){
-  //To be implemented
+  digitalWrite(RELAY_PIN, HIGH);
 }
 
 // Turn the heater off
 void heater_off(){
-  //To be implemented
+  digitalWrite(RELAY_PIN, LOW);
 }
