@@ -1,6 +1,7 @@
 // Defining global variables
-short current_temp = 999, max_temp = -999, min_temp = 999;
+float current_temp = 999.99, max_temp = -999.99, min_temp = 999.99;
 byte state = 0;
+const byte on_temp = 1, off_temp = 2;
 
 // Defining pins
 #define CONTROL_PIN 4
@@ -28,7 +29,7 @@ void setup(){
   control_LED_blink(500);
 
   // Initialise the display
-  init_display();
+  display_init();
   display_msg("Initializing...",1);
 
   // Initialise the temperature sensor and raise error if temp sensor not found
@@ -53,15 +54,30 @@ void loop(){
   }
 
   // Turn the heater on or off if needed
-  // TODO - To be implemented
+  if (current_temp < on_temp) {
+    heater_on();
+  }
+  else if (current_temp > off_temp) {
+    heater_off();
+  }
 
-  // Pulse the control LED in a for loop and check if the button is pressed
-  // TODO - To be implemented
-
-  // TODO - Functions for debugging purposes, remove when code is finished
-  delay(1000);
-  read_switch();
-  // control_LED_blink(500);
+  // Pulse the control LED four times over about 30 seconds and check if the button is pressed in the meantime
+  for (byte j = 0; j<=3; j++){
+    for (short i = 0; i <= 510; i++) {
+      // Check if the button is pressed
+      read_switch();
+  
+      // Set the LED value
+      short val = i;
+      if (i > 255){
+        val = 510 - i;
+      }
+  
+      // Control the LED
+      control_LED_on(val);
+      delay(15);
+    }
+  }
 }
 
 void read_switch()
@@ -77,12 +93,8 @@ void read_switch()
   // Restore the pin state
   digitalWrite(CONTROL_PIN, PinState);
 
-  // Handle the pin reading
+  // Handle the pin reading if the button is pressed
   if (switchPosition == 0)  {
-    // Button is pressed
-    // TODO - Implement follow up
-  }
-  else {
-    // Button is not pressed;
+    display_update();
   }
 }

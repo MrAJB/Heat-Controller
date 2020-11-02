@@ -1,6 +1,5 @@
 // Helper functions to control the LEDs
 
-
 //  Turn control LED on (full power)
 void control_LED_on(){
   digitalWrite(CONTROL_PIN, LOW);
