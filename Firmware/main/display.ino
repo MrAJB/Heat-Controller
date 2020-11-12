@@ -19,7 +19,7 @@ void display_update() {
   oled.clear();
   oled.setFont(FONT8X16);
   oled.setCursor(0, 0);
-  oled.print("CURRENT");
+  oled.print("Huidige temp:");
   oled.setCursor(0, 2);
   oled.print(current_temp);
   oled.on();
@@ -28,7 +28,7 @@ void display_update() {
   
   oled.clear();
   oled.setCursor(0, 0);
-  oled.print("MAX");
+  oled.print("Maximum temp:");
   oled.setCursor(0, 2);
   oled.print(max_temp);
   oled.switchFrame();
@@ -36,7 +36,7 @@ void display_update() {
   
   oled.clear();
   oled.setCursor(0, 0);
-  oled.print("MIN");
+  oled.print("Minimum temp:");
   oled.setCursor(0, 2);
   oled.print(min_temp);
   oled.switchFrame();
