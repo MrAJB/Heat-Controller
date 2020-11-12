@@ -1,7 +1,7 @@
 // Defining global variables
-float current_temp = 999.99, max_temp = -999.99, min_temp = 999.99;
+int current_temp = 999.99, max_temp = -999.99, min_temp = 999.99;
 byte state = 0;
-const byte on_temp = 1, off_temp = 2;
+const byte on_temp = 1, off_temp = 3;
 
 // Defining pins
 #define CONTROL_PIN 4
@@ -30,7 +30,6 @@ void setup(){
 
   // Initialise the display
   display_init();
-  display_msg("Initializing...",1);
 
   // Initialise the temperature sensor and raise error if temp sensor not found
   if(init_temp()==1){
@@ -38,8 +37,7 @@ void setup(){
   }
 
   // Long blink control LED to show finish of the initialisation and turn the display off
-  control_LED_blink(2000);
-  display_off();
+  control_LED_blink(500);
 }
 
 void loop(){
@@ -65,7 +63,29 @@ void loop(){
   for (byte j = 0; j<=3; j++){
     for (short i = 0; i <= 510; i++) {
       // Check if the button is pressed
-      read_switch();
+      if(read_switch()==1){
+        // If a button press is detected, loop for five seconds. Stop if the button is released, else set long_press to true
+        boolean long_press = false;
+        for (short i = 0; i <= 50; i++){
+          delay(100);
+          if(read_switch()==0){
+            long_press = false;
+            display_update();
+            break;
+          }
+          else {
+            long_press = true;
+          }
+        }
+
+        // Reset all values if long_press is true and indicate this with bright blinking
+        if(long_press == true){
+          for (short i = 0; i <= 10; i++){
+            control_LED_blink(100);
+          }
+          current_temp = 999.99, max_temp = -999.99, min_temp = 999.99;
+        }
+      }
   
       // Set the LED value
       short val = i;
@@ -80,7 +100,7 @@ void loop(){
   }
 }
 
-void read_switch()
+byte read_switch()
 {
   // Save the condition of the output pin
   byte PinState = digitalRead(CONTROL_PIN);
@@ -93,8 +113,11 @@ void read_switch()
   // Restore the pin state
   digitalWrite(CONTROL_PIN, PinState);
 
-  // Handle the pin reading if the button is pressed
+  // Return 1 if the button is pressed
   if (switchPosition == 0)  {
-    display_update();
+    return 1;
+  }
+  else {
+    return 0;
   }
 }

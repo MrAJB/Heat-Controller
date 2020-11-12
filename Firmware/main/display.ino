@@ -4,6 +4,7 @@
 void display_init() {
   // Send the initialization sequence to the oled. This leaves the display turned off
   oled.begin();
+  oled.setRotation(0);
   // Clear the memory before turning on the display
   oled.clear();
   // Turn on the display
@@ -13,42 +14,33 @@ void display_init() {
   oled.off();
 }
 
-// Show a message on the screen, set big_font to true to use the bigger font. Else, the small font is used.
-void display_msg(char msg[], int big_font) {
-  // Clear the non-displayed half of the memory to all black
-  // (The previous clear only cleared the other half of RAM)
+// Show the current, maximum and minimum value when the button is pressed
+void display_update() {
   oled.clear();
-
-  // The characters in the 8x16 font are 8 pixels wide and 16 pixels tall
-  // 2 lines of 16 characters exactly fills 128x32
-  if (big_font){
-    oled.setFont(FONT8X16);
-  }
-  else{
-    oled.setFont(FONT6X8);
-  }
-
-  // Position the cusror
-  // usage: oled.setCursor(X IN PIXELS, Y IN ROWS OF 8 PIXELS STARTING WITH 0);
+  oled.setFont(FONT8X16);
   oled.setCursor(0, 0);
-
-  // Write the text to oled RAM (which is not currently being displayed)
-  // Wrap strings in F() to save RAM!
-  oled.print(msg);
-
-  // Swap which half of RAM is being written to, and which half is being displayed
+  oled.print("Huidige temp:");
+  oled.setCursor(0, 2);
+  oled.print(current_temp);
   oled.on();
   oled.switchFrame();
-}
-
-// Turn display off
-void display_off(){
+  delay(3000);
+  
+  oled.clear();
+  oled.setCursor(0, 0);
+  oled.print("Maximum temp:");
+  oled.setCursor(0, 2);
+  oled.print(max_temp);
+  oled.switchFrame();
+  delay(3000);
+  
+  oled.clear();
+  oled.setCursor(0, 0);
+  oled.print("Minimum temp:");
+  oled.setCursor(0, 2);
+  oled.print(min_temp);
+  oled.switchFrame();
+  delay(3000);
+  
   oled.off();
-}
-
-void display_update() {
-  // TODO - To be implemented, show current, max and min temps, as well as runtime (if possible)
-  display_msg("BUTTON PRESSED",1);
-  delay(2000);
-  display_off();
 }
