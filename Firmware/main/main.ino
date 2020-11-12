@@ -1,5 +1,5 @@
 // Defining global variables
-float current_temp = 999.99, max_temp = -999.99, min_temp = 999.99;
+int current_temp = 999.99, max_temp = -999.99, min_temp = 999.99;
 byte state = 0;
 const byte on_temp = 1, off_temp = 2;
 
@@ -30,7 +30,6 @@ void setup(){
 
   // Initialise the display
   display_init();
-  display_msg("Initializing...",1);
 
   // Initialise the temperature sensor and raise error if temp sensor not found
   if(init_temp()==1){
@@ -39,7 +38,6 @@ void setup(){
 
   // Long blink control LED to show finish of the initialisation and turn the display off
   control_LED_blink(2000);
-  display_off();
 }
 
 void loop(){
