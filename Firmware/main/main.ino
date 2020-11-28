@@ -1,7 +1,7 @@
 // Defining global variables
 int current_temp = 999.99, max_temp = -999.99, min_temp = 999.99;
 byte state = 0;
-const byte on_temp = 22, off_temp = 24;
+const byte on_temp = 1, off_temp = 3;
 long runtime, last_reset = 0;
 
 // Defining pins
@@ -59,7 +59,7 @@ void loop(){
   if (current_temp < on_temp) {
     heater_on();
   }
-  else if (current_temp > off_temp) {
+  else if (current_temp >= off_temp) {
     heater_off();
   }
 

@@ -57,24 +57,30 @@ void display_update() {
   oled.clear();
   oled.setCursor(0, 0);
   oled.print("Sinds:");
-  oled.setCursor(0, 2);
-  oled.print(days + " dagen");
   oled.switchFrame();
   delay(3000);
 
   oled.clear();
   oled.setCursor(0, 0);
-  oled.print("Sinds:");
+  oled.print(days);
   oled.setCursor(0, 2);
-  oled.print(hours + " uur");
+  oled.print("dagen");
   oled.switchFrame();
   delay(3000);
 
   oled.clear();
   oled.setCursor(0, 0);
-  oled.print("Sinds:");
+  oled.print(hours);
   oled.setCursor(0, 2);
-  oled.print(minutes + " minuten");
+  oled.print("uur");
+  oled.switchFrame();
+  delay(3000);
+
+  oled.clear();
+  oled.setCursor(0, 0);
+  oled.print(minutes);
+  oled.setCursor(0, 2);
+  oled.print("minuten");
   oled.switchFrame();
   delay(3000);
   
