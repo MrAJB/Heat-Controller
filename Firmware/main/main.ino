@@ -44,7 +44,7 @@ void setup(){
 void loop(){
   //Update the runtime
   runtime = millis() - last_reset;
-  
+
   // Get new temperature values from the sensor
   if(get_temp()==1){
     temp_error();
@@ -87,7 +87,11 @@ void loop(){
           for (short i = 0; i <= 10; i++){
             control_LED_blink(100);
           }
+          // Reset runtime
           last_reset = millis();
+          runtime = millis() - last_reset;
+
+          //Rest temperatures and retrieve current temperatures
           current_temp = 999.99, max_temp = -999.99, min_temp = 999.99;
         }
       }
