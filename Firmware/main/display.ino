@@ -41,6 +41,42 @@ void display_update() {
   oled.print(min_temp);
   oled.switchFrame();
   delay(3000);
+
+  // Show the runtime on screen
+  int days = 0;
+  byte hours, minutes = 0;
+
+  days = (runtime/86400000);
+  runtime = runtime - (days*86400000);
+
+  hours = (runtime/3600000);
+  runtime = runtime - (hours*3600000);
+
+  minutes = (runtime/60000);
+
+  oled.clear();
+  oled.setCursor(0, 0);
+  oled.print("Sinds:");
+  oled.setCursor(0, 2);
+  oled.print(days + " dagen");
+  oled.switchFrame();
+  delay(3000);
+
+  oled.clear();
+  oled.setCursor(0, 0);
+  oled.print("Sinds:");
+  oled.setCursor(0, 2);
+  oled.print(hours + " uur");
+  oled.switchFrame();
+  delay(3000);
+
+  oled.clear();
+  oled.setCursor(0, 0);
+  oled.print("Sinds:");
+  oled.setCursor(0, 2);
+  oled.print(minutes + " minuten");
+  oled.switchFrame();
+  delay(3000);
   
   oled.off();
 }
