@@ -2,6 +2,7 @@
 int current_temp = 999.99, max_temp = -999.99, min_temp = 999.99;
 byte state = 0;
 const byte on_temp = 1, off_temp = 3;
+long runtime, last_reset = 0;
 
 // Defining pins
 #define CONTROL_PIN 4
@@ -36,11 +37,14 @@ void setup(){
     sensor_error();
   }
 
-  // Long blink control LED to show finish of the initialisation and turn the display off
+  // Blink control LED to show finish of the initialisation
   control_LED_blink(500);
 }
 
 void loop(){
+  //Update the runtime
+  runtime = millis() - last_reset;
+  
   // Get new temperature values from the sensor
   if(get_temp()==1){
     temp_error();
@@ -55,7 +59,7 @@ void loop(){
   if (current_temp < on_temp) {
     heater_on();
   }
-  else if (current_temp > off_temp) {
+  else if (current_temp >= off_temp) {
     heater_off();
   }
 
@@ -83,6 +87,7 @@ void loop(){
           for (short i = 0; i <= 10; i++){
             control_LED_blink(100);
           }
+          last_reset = millis();
           current_temp = 999.99, max_temp = -999.99, min_temp = 999.99;
         }
       }
