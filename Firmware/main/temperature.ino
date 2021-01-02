@@ -38,6 +38,7 @@ short get_temp(){
 
     // Briefly blink the control LED to show that data was successfully collected
     control_LED_blink(500);
+    control_LED_blink(500);
 
     // Operation succesfull
     return 0;

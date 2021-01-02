@@ -27,8 +27,9 @@ void setup(){
   pinMode(RELAY_PIN, OUTPUT);
 
   // Blink control LED to show start of the initialisation
-  control_LED_blink(500);
-
+  control_LED_blink(250);
+  control_LED_blink(250);
+  
   // Initialise the display
   display_init();
 
@@ -38,7 +39,8 @@ void setup(){
   }
 
   // Blink control LED to show finish of the initialisation
-  control_LED_blink(500);
+  control_LED_blink(250);
+  control_LED_blink(250);
 }
 
 void loop(){
